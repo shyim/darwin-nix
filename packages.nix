@@ -1,15 +1,19 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 
-let 
-    php = pkgs.php81.buildEnv {
-        extensions = { all, enabled }: with all; enabled ++ [ redis ];
-        extraConfig = ''
-        memory_limit = 2G
-        pdo_mysql.default_socket=/tmp/mysql.sock
-        mysqli.default_socket=/tmp/mysql.sock
-        '';
-    };
+let
+  blackfire = pkgs.callPackage ./pkgs/blackfire.nix {};
+  blackfirePhpExt = pkgs.callPackage ./pkgs/blackfire-probe.nix { php = pkgs.php81; };
+  php = pkgs.php81.buildEnv {
+    extensions = { all, enabled }: with all; enabled ++ [ redis blackfirePhpExt ];
+    extraConfig = ''
+      memory_limit = 2G
+      pdo_mysql.default_socket=/tmp/mysql.sock
+      mysqli.default_socket=/tmp/mysql.sock
+      blackfire.agent_socket = "tcp://127.0.0.1:8307";
+    '';
+  };
 in {
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     nixfmt
@@ -31,13 +35,17 @@ in {
     redis
     mysql80
 
-    git 
-    htop 
-    jq 
-    tree 
-    symfony-cli 
+    git
+    htop
+    jq
+    tree
+    symfony-cli
     php
     tmux
     php.packages.composer
+    blackfire
+
+    wget
+    git-crypt
   ];
 }

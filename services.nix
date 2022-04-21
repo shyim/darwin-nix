@@ -20,4 +20,6 @@
   };
 
   home-manager.users.shyim = import ./home.nix;
+
+  services.blackfire.enable = true;
 }
