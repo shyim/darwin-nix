@@ -4,7 +4,7 @@ let
   blackfire = pkgs.callPackage ./pkgs/blackfire.nix {};
   blackfirePhpExt = pkgs.callPackage ./pkgs/blackfire-probe.nix { php = pkgs.php81; };
   php = pkgs.php81.buildEnv {
-    extensions = { all, enabled }: with all; enabled ++ [ redis blackfirePhpExt ];
+    extensions = { all, enabled }: with all; enabled ++ [ redis blackfirePhpExt pdo iconv ];
     extraConfig = ''
       memory_limit = 2G
       pdo_mysql.default_socket=/tmp/mysql.sock
@@ -43,9 +43,8 @@ in {
     php
     tmux
     php.packages.composer
-    blackfire
-
     wget
     git-crypt
+    go_1_18
   ];
 }

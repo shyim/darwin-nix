@@ -23,6 +23,7 @@
     enableAutosuggestions = true;
     envExtra = ''
       export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+      export PATH="$PATH:$HOME/.platformsh/bin"
     '';
   };
 

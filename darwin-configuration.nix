@@ -15,7 +15,7 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
   nix.extraOptions = ''
-      experimental-features = nix-command
+      experimental-features = nix-command flakes
   '';
 
   programs.zsh.enable = true;

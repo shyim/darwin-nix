@@ -83,6 +83,7 @@ in
       datadir = ${cfg.dataDir}
       socket = ${cfg.socketFile}
       ${optionalString (cfg.bind != null) "bind-address = ${cfg.bind}" }
+      sql-require-primary-key=ON
       ${cfg.extraOptions}
       [mysql]
       socket = ${cfg.socketFile}
