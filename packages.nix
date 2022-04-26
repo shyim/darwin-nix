@@ -45,5 +45,7 @@ in {
     wget
     git-crypt
     go_1_18
+
+    platformsh
   ];
 }
