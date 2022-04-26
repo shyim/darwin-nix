@@ -1,13 +1,6 @@
 { pkgs, ... }: {
-  launchd.user.agents.redis = {
-    script = ''
-      if ! test -e /opt/nix/redis; then
-        mkdir /opt/nix/redis
-      fi
-      exec ${pkgs.redis}/bin/redis-server
-    '';
-    serviceConfig.KeepAlive = true;
-  };
+  services.redis.enable = true;
+  services.redis.dataDir = null;  
 
   services.mysql.enable = true;
 
