@@ -1,17 +1,6 @@
 { pkgs, ... }:
 
-let
-  blackfirePhpExt = pkgs.callPackage ./pkgs/blackfire-probe.nix { php = pkgs.php81; };
-  php = pkgs.php81.buildEnv {
-    extensions = { all, enabled }: with all; enabled ++ [ redis blackfirePhpExt pdo iconv ];
-    extraConfig = ''
-      memory_limit = 2G
-      pdo_mysql.default_socket=/tmp/mysql.sock
-      mysqli.default_socket=/tmp/mysql.sock
-      blackfire.agent_socket = "tcp://127.0.0.1:8307";
-    '';
-  };
-in {
+{
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -39,7 +28,7 @@ in {
     jq
     tree
     symfony-cli
-    php
+    custom-php81
     tmux
     php.packages.composer
     wget

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config,  ... }: {
   services.redis.enable = true;
   services.redis.dataDir = null;  
 
@@ -17,16 +17,9 @@
   services.blackfire.enable = true;
 
   services.caddy.enable = true;
-  services.caddy.virtualHosts."http://localhost:8000" = {
-    extraConfig = ''
-      root * /Users/shyim/Code/sw6/public
-      php_fastcgi unix//tmp/php81.sock
-      encode gzip
-      file_server
-    '';
-  };
 
   services.phpfpm.pools.php81 = {
+    phpPackage = pkgs.custom-php81;
     settings = {
       "pm" = "dynamic";
       "pm.max_children" = 32;
@@ -38,5 +31,23 @@
       "php_admin_flag[log_errors]" = true;
       "catch_workers_output" = true;
     };
+  };
+
+  services.caddy.virtualHosts."http://sw6.dev.localhost:8000" = {
+    extraConfig = ''
+      root * /Users/shyim/Code/sw6/public
+      php_fastcgi unix/${config.services.phpfpm.pools.php81.socket}
+      encode gzip
+      file_server
+    '';
+  };
+
+  services.caddy.virtualHosts."http://flex.dev.localhost:8000" = {
+    extraConfig = ''
+      root * /Users/shyim/Code/flex/public
+      php_fastcgi unix/${config.services.phpfpm.pools.php81.socket}
+      encode gzip
+      file_server
+    '';
   };
 }
