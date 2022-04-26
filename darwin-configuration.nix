@@ -5,6 +5,8 @@
 
     ./modules/mysql
     ./modules/blackfire
+    ./modules/php-fpm
+    ./modules/caddy
 
     ./packages.nix
     ./services.nix
