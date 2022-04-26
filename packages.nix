@@ -30,7 +30,7 @@
     symfony-cli
     custom-php81
     tmux
-    php.packages.composer
+    custom-php81.packages.composer
     wget
     git-crypt
     go_1_18
