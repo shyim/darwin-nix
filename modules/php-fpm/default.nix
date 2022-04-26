@@ -202,7 +202,7 @@ in {
   config = mkIf (cfg.pools != {}) {
     launchd.user.agents = mapAttrs' (pool: poolOpts:
       nameValuePair "phpfpm-${pool}" {
-        script = "${poolOpts.phpPackage}/bin/php-fpm -y ${fpmCfgFile pool poolOpts} -c ${phpIni poolOpts}";
+        command = "${poolOpts.phpPackage}/bin/php-fpm -F -y ${fpmCfgFile pool poolOpts} -c ${phpIni poolOpts}";
         serviceConfig = {
           KeepAlive = true;
           RunAtLoad = true;
