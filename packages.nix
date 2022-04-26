@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  blackfire = pkgs.callPackage ./pkgs/blackfire.nix {};
   blackfirePhpExt = pkgs.callPackage ./pkgs/blackfire-probe.nix { php = pkgs.php81; };
   php = pkgs.php81.buildEnv {
     extensions = { all, enabled }: with all; enabled ++ [ redis blackfirePhpExt pdo iconv ];

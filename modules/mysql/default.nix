@@ -87,6 +87,8 @@ in
       ${cfg.extraOptions}
       [mysql]
       socket = ${cfg.socketFile}
+      user=root
+      password=root
     '';
 
     launchd.user.agents.mysql =

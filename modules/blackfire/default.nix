@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.services.blackfire;
   agent = cfg.package;
-  blackfireAgent = pkgs.callPackage ../../pkgs/blackfire.nix { };
+  blackfireAgent = pkgs.blackfire;
 
 in {
   options = {
