@@ -50,4 +50,10 @@
       file_server
     '';
   };
+
+  services.elasticsearch.enable = true;
+  services.elasticsearch.package = pkgs.elasticsearch7;
+  services.elasticsearch.extraConf = ''
+  xpack.ml.enabled: false
+  '';
 }

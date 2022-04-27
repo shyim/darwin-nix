@@ -7,6 +7,7 @@
     ./modules/blackfire
     ./modules/php-fpm
     ./modules/caddy
+    ./modules/elasticsearch
 
     ./packages.nix
     ./services.nix
