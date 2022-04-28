@@ -23,5 +23,33 @@
       experimental-features = nix-command flakes
   '';
 
+  nix.distributedBuilds = true;
+  nix.buildMachines = [
+    { 
+      hostName = "aelia.shyim.de";
+      sshUser = "root";
+      system = "x86_64-linux";
+      sshKey = "/Users/shyim/.nixpkgs/keys/builder.key";
+    }
+    { 
+      hostName = "aelia.shyim.de";
+      sshUser = "root";
+      system = "i686-linux";
+      sshKey = "/Users/shyim/.nixpkgs/keys/builder.key";
+    }
+    { 
+      hostName = "142.132.213.189:50922";
+      sshUser = "user";
+      system = "x86_64-darwin";
+      sshKey = "/Users/shyim/.nixpkgs/keys/builder.key";
+    }
+    { 
+      hostName = "130.162.211.118";
+      sshUser = "opc";
+      system = "aarch64-linux";
+      sshKey = "/Users/shyim/.nixpkgs/keys/builder.key";
+    }
+  ];
+
   programs.zsh.enable = true;
 }
