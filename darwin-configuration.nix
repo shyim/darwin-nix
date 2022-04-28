@@ -2,12 +2,7 @@
 {
   imports = [
     <home-manager/nix-darwin>
-
-    ./modules/mysql
-    ./modules/blackfire
-    ./modules/php-fpm
-    ./modules/caddy
-    ./modules/elasticsearch
+    <nix-darwin-modules>
 
     ./packages.nix
     ./services.nix
@@ -35,12 +30,6 @@
       hostName = "aelia.shyim.de";
       sshUser = "root";
       system = "i686-linux";
-      sshKey = "/Users/shyim/.nixpkgs/keys/builder.key";
-    }
-    { 
-      hostName = "142.132.213.189:50922";
-      sshUser = "user";
-      system = "x86_64-darwin";
       sshKey = "/Users/shyim/.nixpkgs/keys/builder.key";
     }
     { 

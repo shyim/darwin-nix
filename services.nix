@@ -3,6 +3,13 @@
   services.redis.dataDir = null;  
 
   services.mysql.enable = true;
+  services.mysql.extraOptions = ''
+    sql-require-primary-key=ON
+  '';
+  services.mysql.extraClientOptions = ''
+    user=root
+    password=root
+  '';
 
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = true;
@@ -15,8 +22,6 @@
   home-manager.users.shyim = import ./home.nix;
 
   services.blackfire.enable = true;
-
-  services.caddy.enable = true;
 
   services.phpfpm.pools.php81 = {
     phpPackage = pkgs.custom-php81;
@@ -33,6 +38,8 @@
     };
   };
 
+
+  services.caddy.enable = true;
   services.caddy.virtualHosts."http://sw6.dev.localhost" = {
     extraConfig = ''
       root * /Users/shyim/Code/sw6/public
