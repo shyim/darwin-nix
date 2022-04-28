@@ -8,4 +8,10 @@ self: super: {
       blackfire.agent_socket = "tcp://127.0.0.1:8307";
     '';
   };
+  ansible = super.ansible.overrideAttrs (old: rec {
+    propagatedBuildInputs = old.propagatedBuildInputs ++ [
+      super.pkgs.python39Packages.jmespath
+      super.pkgs.gnutar
+    ];
+  });
 }

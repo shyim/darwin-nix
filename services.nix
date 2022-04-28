@@ -1,4 +1,4 @@
-{ pkgs, config,  ... }: {
+{ pkgs, lib, config,  ... }: {
   services.redis.enable = true;
   services.redis.dataDir = null;  
 
@@ -33,7 +33,7 @@
     };
   };
 
-  services.caddy.virtualHosts."http://sw6.dev.localhost:8000" = {
+  services.caddy.virtualHosts."http://sw6.dev.localhost" = {
     extraConfig = ''
       root * /Users/shyim/Code/sw6/public
       php_fastcgi unix/${config.services.phpfpm.pools.php81.socket}
@@ -42,7 +42,7 @@
     '';
   };
 
-  services.caddy.virtualHosts."http://flex.dev.localhost:8000" = {
+  services.caddy.virtualHosts."http://flex.dev.localhost" = {
     extraConfig = ''
       root * /Users/shyim/Code/flex/public
       php_fastcgi unix/${config.services.phpfpm.pools.php81.socket}
