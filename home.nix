@@ -45,6 +45,8 @@
   programs.git = {
     enable = true;
 
+    delta.enable = true;
+
     signing.key = "23390FE0B21EED90CC893FE696B20A0B8A70E90A";
     signing.signByDefault = true;
 
