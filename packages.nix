@@ -36,7 +36,6 @@
     go_1_18
     nodejs-16_x
     platformsh
-    ansible
     fd
   ];
 }
