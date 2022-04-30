@@ -36,5 +36,6 @@
     platformsh
     fd
     hcloud
+    rbw
   ];
 }

@@ -12,7 +12,7 @@
   '';
 
   programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.enableSSHSupport = true;
+  programs.gnupg.agent.enableSSHSupport = false;
 
   users.users.shyim = {
     name = "shyim";
@@ -63,4 +63,9 @@
   services.elasticsearch.extraConf = ''
   xpack.ml.enabled: false
   '';
+
+  launchd.user.agents.link-gpg = {
+    command = "/bin/ln -sf $HOME/.gnupg/S.gpg-agent.ssh $SSH_AUTH_SOCK";
+    serviceConfig.RunAtLoad = true;
+  };
 }
