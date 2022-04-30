@@ -22,12 +22,10 @@
     })
     redis
     mysql80
-
     git
     htop
     jq
     tree
-    symfony-cli
     custom-php81
     tmux
     custom-php81.packages.composer
@@ -37,5 +35,6 @@
     nodejs-16_x
     platformsh
     fd
+    hcloud
   ];
 }

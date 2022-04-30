@@ -19,7 +19,7 @@
     home = "/Users/shyim";
   };
 
-  home-manager.users.shyim = import ./home.nix;
+  home-manager.users.shyim = import ./home;
 
   services.blackfire.enable = true;
 
