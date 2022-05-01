@@ -4,7 +4,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    nixfmt
+    nixpkgs-fmt
     (neovim.override {
       vimAlias = true;
       configure = {
@@ -37,5 +37,6 @@
     fd
     hcloud
     rbw
+    rnix-lsp
   ];
 }
