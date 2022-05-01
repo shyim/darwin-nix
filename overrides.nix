@@ -1,6 +1,6 @@
 self: super: {
-  custom-php81 = let blackfirePhpExt = super.pkgs.callPackage ./pkgs/blackfire-probe.nix { php = super.pkgs.php81; }; in super.pkgs.php81.buildEnv {
-    extensions = { all, enabled }: with all; enabled ++ [ redis blackfirePhpExt ];
+  custom-php81 = super.pkgs.php81.buildEnv {
+    extensions = { all, enabled }: with all; enabled ++ [ redis blackfire ];
     extraConfig = ''
       memory_limit = 2G
       pdo_mysql.default_socket=/tmp/mysql.sock
