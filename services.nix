@@ -1,6 +1,9 @@
 { pkgs, lib, config,  ... }: {
   services.redis.enable = true;
-  services.redis.dataDir = null;  
+  services.redis.dataDir = null;
+  services.redis.extraConfig = ''
+  save ""
+  '';
 
   services.mysql.enable = true;
   services.mysql.extraOptions = ''
@@ -59,10 +62,8 @@
   };
 
   services.elasticsearch.enable = true;
-  services.elasticsearch.package = pkgs.elasticsearch7;
-  services.elasticsearch.extraConf = ''
-  xpack.ml.enabled: false
-  '';
+  services.elasticsearch.package = pkgs.callPackage ./pkgs/opensearch {};
+
 
   launchd.user.agents.link-gpg = {
     command = "/bin/ln -sf $HOME/.gnupg/S.gpg-agent.ssh $SSH_AUTH_SOCK";
