@@ -20,6 +20,7 @@
         '';
       };
     })
+    minio
     redis
     mysql80
     git
@@ -29,6 +30,7 @@
     custom-php81
     tmux
     custom-php81.packages.composer
+    custom-php81.packages.php-cs-fixer
     wget
     git-crypt
     go_1_18
@@ -38,5 +40,7 @@
     hcloud
     rbw
     rnix-lsp
+    yarn
+    mailhog
   ];
 }
