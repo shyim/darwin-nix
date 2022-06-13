@@ -52,12 +52,13 @@
     '';
   };
 
-  services.caddy.virtualHosts."http://flex.dev.localhost" = {
+  services.caddy.virtualHosts."http://db.localhost" = {
     extraConfig = ''
-      root * /Users/shyim/Code/flex/public
-      php_fastcgi unix/${config.services.phpfpm.pools.php81.socket}
+      root * ${pkgs.adminer}
+      php_fastcgi unix/${config.services.phpfpm.pools.php81.socket} {
+        index adminer.php
+      }
       encode gzip
-      file_server
     '';
   };
 
