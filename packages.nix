@@ -42,5 +42,7 @@
     rnix-lsp
     yarn
     mailhog
+    awsume
+    awscli2
   ];
 }

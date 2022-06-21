@@ -25,10 +25,12 @@
       vim = "nvim";
       vi = "nvim";
     };
-    loginShellInit = ''
+    loginShellInit = let awsume  = pkgs.callPackage ../../../pkgs/awsume {}; in ''
       export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
       export EDITOR=nvim
       set fish_greeting
+
+      alias awsume="source (which ${awsume}/bin/awsume.fish)"
     '';
   };
 
