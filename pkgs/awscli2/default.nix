@@ -6,6 +6,7 @@
 , util-linux, gnugrep, coreutils
 , autoPatchelfHook
 , zlib
+, groff
 }:
 
 stdenv.mkDerivation (rec {
@@ -18,10 +19,13 @@ stdenv.mkDerivation (rec {
   };
   sourceRoot = ".";
 
+  nativeBuildInputs = [ makeWrapper ];
+
   installPhase = ''
     mkdir -p $out/bin
     cp -R * $out
-    ln -s $out/aws $out/bin/aws
+    makeWrapper $out/aws $out/bin/aws \
+      --prefix PATH : ${lib.makeBinPath [ groff ]}
   '';
 
   meta = {
