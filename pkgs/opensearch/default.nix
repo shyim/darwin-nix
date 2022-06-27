@@ -10,11 +10,11 @@
 
 stdenv.mkDerivation (rec {
   pname = "opensearch";
-  version = "2.0.0";
+  version = "2.0.1";
 
   src = fetchurl {
-    url = "https://artifacts.opensearch.org/releases/bundle/opensearch/2.0.0/opensearch-2.0.0-linux-x64.tar.gz";
-    sha256 = "0kjnn1wv46wrgk4m9h6zycgg4n0hiv976s8fxmibjb054790dixy";
+    url = "https://artifacts.opensearch.org/releases/bundle/opensearch/2.0.1/opensearch-2.0.1-linux-x64.tar.gz";
+    sha256 = "168ddrsm071fbzkihxxfwlymfa3zncav8hg8vcq574rrr1qxqrl3";
   };
 
   nativeBuildInputs = [ makeWrapper ];
